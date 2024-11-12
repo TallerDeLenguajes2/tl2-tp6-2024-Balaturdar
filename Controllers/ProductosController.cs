@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-namespace MiWebApi.Controllers;
-
 
 public class ProductosController : Controller
 {
@@ -12,48 +10,41 @@ public class ProductosController : Controller
         _logger = logger;
         repoProductos = new ProductosRepository();
     }
-
     public IActionResult Index()
     {
         var productos = repoProductos.ListarProductos();
         return View(productos);
     }
-//En el controlador de Productos : Listar, Crear, Modificar y Eliminar Productos.
-
+    public IActionResult AltaProducto(){
+        return View();
+    }
     [HttpPost]
     public IActionResult CrearProducto(Productos producto)
     {
         repoProductos.CrearProducto(producto);
         return RedirectToAction ("Index");
-
     }
-
     [HttpGet]
     public IActionResult ModificarProducto(int id)
     {
         var producto  = repoProductos.ObtenerProductoId(id);
         return View(producto);
     }
-
     [HttpPost]
     public IActionResult ModificarProducto(Productos producto)
     {
         repoProductos.ModProducto(producto);
         return RedirectToAction ("Index"); 
-
     }
-
    [HttpGet]
     public IActionResult EliminarProducto(int id)
     {
         return View(repoProductos.ObtenerProductoId(id));
     }
-
     [HttpGet]
     public IActionResult EliminarProductoPorId(int id)
     {
         repoProductos.EliminarProductoId(id);
-        return RedirectToAction ("Index"); 
+        return RedirectToAction ("Index");
     }
-
 }
