@@ -42,7 +42,6 @@ public class PresupuestosRepository{
                 command.Parameters.AddWithValue("@cantidad", detalle.Cantidad);
                 command.ExecuteNonQuery();
             }
-
             connection.Close();
         }
 

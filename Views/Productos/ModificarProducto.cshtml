@@ -1,0 +1,25 @@
+@model Productos
+
+<h2>Modificar Producto</h2>
+
+<form asp-controller="Productos" asp-action="ModificarProducto" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    <section class="form-group">
+        <label asp-for="Descripcion" class="control-label"></label>
+        <input asp-for="Descripcion" class="form-control" />
+        <span asp-validation-for="Descripcion" class="text-danger"></span>
+    </section>
+
+    <section class="form-group">
+        <label asp-for="Precio" class="control-label"></label>
+        <input asp-for="Precio" class="form-control" />
+        <span asp-validation-for="Precio" class="text-danger"></span>
+    </section>
+    
+    <input type="hidden" asp-for="IdProductos" />
+
+    <section class="form-group">
+        <input type="submit" value="Guardar" class="btn btn-default" />
+    </section>
+</form>

@@ -25,7 +25,7 @@ public class ProductosRepository{
         }
     }
 
-    public void ModProducto(int id, Productos producto){
+    public void ModProducto(Productos producto){
         string queryString = @"UPDATE Productos SET Descripcion = @Descripcion, Precio = @Precio WHERE idProducto = @Id";
 
         using (SqliteConnection connection = new SqliteConnection(CadenaDeConexion))
@@ -34,7 +34,7 @@ public class ProductosRepository{
             SqliteCommand command = new SqliteCommand(queryString,connection);
             command.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
             command.Parameters.AddWithValue("@Precio", producto.Precio);
-            command.Parameters.AddWithValue("@Id", id);
+            command.Parameters.AddWithValue("@Id", producto.IdProductos);
             command.ExecuteNonQuery();
             connection.Close();            
         }
@@ -63,24 +63,24 @@ public class ProductosRepository{
         return productos;
     }
 
-    public Productos DetalleProductoId(int id){
+    public Productos ObtenerProductoId(int id){
         var producto = new Productos();
         using(SqliteConnection connection = new SqliteConnection(CadenaDeConexion)){
-            string queryString = @"SELECT idProducto, Descripcion, Precio From Productos WHERE idProductos = @id";
+            string queryString = @"SELECT idProducto, Descripcion, Precio From Productos WHERE idProducto = @id";
             var command = new SqliteCommand( queryString, connection);
+            command.Parameters.AddWithValue("@id", id.ToString());
             connection.Open();
-            command.Parameters.AddWithValue("@id", id);
             using(SqliteDataReader reader = command.ExecuteReader())
             {
                 reader.Read();
-                producto.IdProductos = Convert.ToInt32(reader["idProductos"]);
+                producto.IdProductos = Convert.ToInt32(reader["idProducto"]);
                 producto.Descripcion = reader["Descripcion"].ToString();
                 producto.Precio = Convert.ToInt32(reader["Precio"]);
             }
             command.ExecuteReader();
             connection.Close();
         }
-        return new Productos();
+        return producto;
     }
 
     public void EliminarProductoId(int id){
