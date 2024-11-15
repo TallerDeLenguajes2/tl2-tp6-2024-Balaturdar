@@ -3,7 +3,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddScope<IUserRepository,InMemoryUserRepository>();
+
+
+// Habilitar servicios de sesiones
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tiempo de expiración de la sesión
+    options.Cookie.HttpOnly = true; // Solo accesible desde HTTP, no JavaScript
+    options.Cookie.IsEssential = true; // Necesario incluso si el usuario no acepta cookies
+});
+
 var app = builder.Build();
+
+app.UserSession()
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

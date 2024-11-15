@@ -1,0 +1,14 @@
+@model Presupuestos
+
+<section class="container mt-4">
+    <section class="mb-4">
+        <h2>Presupuesto</h2>
+        <p><strong>Destinatario:</strong> @Model.NombreDestinatario</p>
+        <p><strong>Fecha:</strong> @Model.FechaCrecion</p>
+    </section>
+    <p class="text-center">¿Desea eliminar este presupuesto?</p>
+    <section class="text-center">
+        <a asp-controller="Presupuestos" asp-action="EliminarPresupuestoid" asp-route-id="@Model.IdPresupuesto" class="btn btn-success">Eliminar</a>
+        <a asp-controller="Presusuestos" asp-action="Index" class="btn btn-danger">Cancelar</a>
+    </section>
+</section>
