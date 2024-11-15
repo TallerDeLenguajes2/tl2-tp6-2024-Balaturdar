@@ -19,7 +19,7 @@ public class Presupuestos{
         return MontoPresupuesto() * 1.21;
     }
     public int CantidadProductos(){
-        return detalle.Sum(d => d.Cantidad);
+        return Convert.ToInt32(detalle.Sum(d => d.Cantidad));
     }
 
 }

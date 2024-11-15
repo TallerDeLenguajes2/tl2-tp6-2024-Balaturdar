@@ -72,7 +72,7 @@ public class PresupuestosRepository{
             }
         }
 
-        return new List<Presupuestos>();
+        return presupuestos;
     }
 
     public List<Productos> DetallesPresupuestoId(int id){//Borrar
@@ -110,7 +110,7 @@ public class PresupuestosRepository{
             }
 
         }
-        return new List<Productos>();
+        return listaProductos;
 
     }
 
