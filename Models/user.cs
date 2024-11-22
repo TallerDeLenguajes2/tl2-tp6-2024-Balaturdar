@@ -1,8 +1,8 @@
 public class User{
-    publicint Id;
-    publicstring Username{get;set;} = string.Empty;
-    publicstring Password{get;set;} = string.Empty;
-    publicAccessLevel AccessLevel {get;set;};
+    public int Id;
+    public string Username{get;set;} = string.Empty;
+    public string Password{get;set;} = string.Empty;
+    public AccessLevel AccessLevel {get;set;}
 }
 
 public enum AccessLevel{

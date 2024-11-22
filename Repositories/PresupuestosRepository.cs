@@ -208,9 +208,9 @@ public class PresupuestosRepository{
                     Where idPresupuesto = @presupuesto AND idProducto = @producto";
         using(SqliteConnection connection = new SqliteConnection(CadenaDeConexion)){
             connection.Open();
-            SqliteCommand = nes SqliteCommand(query,connection);
-            command.Parameters.AddWithValue("@presupuesto");
-            command.Parameters.AddWithValue("@producto",idProducto);
+            SqliteCommand command = new SqliteCommand(query,connection);
+            command.Parameters.AddWithValue("@presupuesto", idPresupuesto);
+            command.Parameters.AddWithValue("@producto", idProducto);
         }
 
     }

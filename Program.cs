@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScope<IUserRepository,InMemoryUserRepository>();
+builder.Services.AddScoped<IUserRepository,InMemoryUserRepository>();
 
 
 // Habilitar servicios de sesiones
@@ -16,7 +16,7 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-app.UserSession()
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

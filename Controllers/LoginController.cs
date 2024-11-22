@@ -23,22 +23,18 @@ public class LoginController : Controller
             return View("Index", model);
         }
 
-        User usuario = InMemoryUserRepository.Get(model.Username, model.Password);
+        User usuario = _inMemoryUserRepository.GetUser(model.Username, model.Password);
         if(usuario != null){
             //return RedirectToAction("Index","Home");
             HttpContext.Session.SetString("IsAuthenticated","true");
-            HttpContext.Session.SetString("User",Username);
-            HttpContext.Session.SetString("AccesLevel",usuario.AccesLevel.ToString());
+            HttpContext.Session.SetString("User",usuario.Username);
+            HttpContext.Session.SetString("AccesLevel",usuario.AccessLevel.ToString());
             return RedirectToAction("Index","Home");
         }
 
         model.ErrorMessage = "Credenciales Invalidas.";
         model.IsAuthenticated = false;
         return View("Index",model);
-
-
-
-
     }
 
     public IActionResult Logout()
