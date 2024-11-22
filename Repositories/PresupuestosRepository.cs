@@ -10,7 +10,7 @@ public class PresupuestosRepository{
         using(SqliteConnection connection = new SqliteConnection(CadenaDeConexion)){
 
             connection.Open();
-            string queryString = @"INSERT INTO Presupuestos (NombreDestinatario, FechaCreacion) 
+            string queryString = @"INSERT INTO Presupuestos (IdCliente, FechaCreacion) 
                                 VALUES (@destinatario, @fecha);
                                 ";
             
